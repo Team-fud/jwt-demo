@@ -6,7 +6,7 @@
 
 - 后端位置 https://github.com/Team-fud/netty-decode
 
-##### npm install错误请以管理员命令运行npm install
+- npm install错误请以管理员命令运行npm install
 
 #### 项目介绍
 
