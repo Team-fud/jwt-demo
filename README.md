@@ -1,21 +1,12 @@
 # jwt-demo
 
-> 后端API地址:[https://github.com/wang926454/ShiroJwt](https://github.com/wang926454/ShiroJwt)
+- 项目基于 https://github.com/dolyw/VueStudy的项目进行二次开发，感谢
 
 #### 搭建参考
 
-1. 基于vue-admin-template模板搭建:[https://github.com/PanJiaChen/vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
+- 后端位置 https://github.com/Team-fud/netty-decode
 
-#### 完成进度
-
-- [x] ~~vue-admin-template作为基础架子~~
-- [x] ~~用户列表~~
-- [x] ~~用户列表的CRUD~~
-- [x] ~~在线用户列表~~
-- [x] ~~在线用户踢出~~
-- [x] 完成
-
-##### npm install错误请以管理员命令运行npm install
+- npm install错误请以管理员命令运行npm install
 
 #### 项目介绍
 
@@ -47,14 +38,3 @@ npm run build
 # Build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-#### 使用说明
-
-1. 该项目为测试JWT使用
-
-#### 参与贡献
-
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
