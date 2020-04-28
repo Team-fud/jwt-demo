@@ -162,7 +162,7 @@ export const constantRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'https://github.com/wang926454/VueStudy/tree/master/VueStudy08-JWT',
+        path: 'https://github.com/Team-fud/jwt-demo',
         meta: { title: '前端地址', icon: 'link' }
       }
     ]

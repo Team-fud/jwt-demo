@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const baseURL = process.env.BASE_API + '/terminal'
+const baseURL = '/vue/terminal'
 
 /**
  * 终端查询
@@ -9,7 +9,7 @@ const baseURL = process.env.BASE_API + '/terminal'
 export function list(page) {
   page = page.toString()
   return request({
-    url: '/terminal/getAll/' + page,
+    url: baseURL + '/getAll/' + page,
     method: 'get'
   })
 }
@@ -41,7 +41,7 @@ export function findById(id) {
  */
 export function add(data) {
   return request({
-    url: '/terminal/add',
+    url: baseURL + '/add',
     method: 'post',
     data
   })

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const baseURL = process.env.BASE_API
+const baseURL = '/vue'
 
 /**
  * 登录

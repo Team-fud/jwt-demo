@@ -13,11 +13,11 @@ module.exports = {
     /* proxyTable: {}, */
     // 代理列表, 是否开启代理通过[./dev.env.js]配置
     proxyTable: {
-      '/': {
-        target: 'http://localhost:8081',
+      '/vue': {
+        target: 'http://localhost:9090',
         changeOrigin: true,
         pathRewrite: {
-          '^/': ''
+          '^/vue': ''
         }
       }
     },

@@ -60,22 +60,22 @@ export default {
       this.submitLoading = true
       this.$refs.terminal.validate((valid) => {
         if (valid) {
-            user.search(this.terminal.cateName).then(response => {
-              // 执行成功重置表单且弹出提示信息
-              const data = response.data
-              this.tableData = data
-              this.resetForm()
-              this.$message({
-                type: 'success',
-                message: response.msg
-              })
-            }).catch(error => {
-              console.log(error)
-              this.resetForm()
-            }).then(() => {
-              // always executed 类似finally
-              this.submitLoading = false
+          user.search(this.terminal.cateName).then(response => {
+            // 执行成功重置表单且弹出提示信息
+            const data = response.data
+            this.tableData = data
+            this.resetForm()
+            this.$message({
+              type: 'success',
+              message: response.msg
             })
+          }).catch(error => {
+            console.log(error)
+            this.resetForm()
+          }).then(() => {
+            // always executed 类似finally
+            this.submitLoading = false
+          })
         } else {
           this.submitLoading = false
           return false
@@ -91,8 +91,9 @@ export default {
       // 刷新父组件列表
       // this.$parent.list(this.$parent.serachForm)
       // 父子组件事件监听刷新父组件列表
-      if (JSON.stringify(this.tableData)!='{}') {
-
+      // eslint-disable-next-line eqeqeq
+      if (Object.keys(this.tableData).length != 0) {
+        // eslint-disable-next-line eqeqeq
         this.$emit('getTerminalFromSearch', this.tableData)
       }
       this.submitLoading = false
@@ -101,9 +102,9 @@ export default {
     // 准备新增或更新
     search: function() {
       // userId不为空更新
-        this.submitLoading = false
+      this.submitLoading = false
       // 显示弹出框
-        this.dialogVisible = true
+      this.dialogVisible = true
     },
     // 弹窗关闭事件方法
     handleClose(done) {

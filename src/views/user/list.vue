@@ -5,6 +5,7 @@
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" @click="search()">查询</el-button>
         <el-button type="primary" icon="el-icon-plus" @click="preById(null)">新增</el-button>
+        <el-button type="info" icon="el-icon-loading" direction="rtl" @click="list(searchForm)">刷新</el-button>
       </el-form-item>
 
     </el-form>
@@ -114,7 +115,7 @@ export default {
       }) */
       this.$refs.listSearch.search()
     },
-    getTerminalFromSearch:function(val){
+    getTerminalFromSearch: function(val) {
       console.log(val)
       this.tableData = val
     },
