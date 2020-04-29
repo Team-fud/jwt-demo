@@ -6,47 +6,30 @@
       :visible.sync="dialogVisible"
       :before-close="handleClose"
       width="50%"
-      title="日志细节">
+      title="终端Req细节">
 
-      <el-form v-loading="submitLoading" ref="log" :model="log" :rules="userRules" label-width="100px" label-suffix="：" status-icon>
+      <el-form v-loading="submitLoading" ref="req" :model="req" label-width="100px" label-suffix="：" status-icon>
 
-        <el-form-item label="操作用户" prop="username">
-          <el-input v-model.trim="log.username" placeholder="请输入用户名称"/>
+        <el-form-item label="Req信息" prop="reqData">
+          <el-input v-model.trim="req.reqData" placeholder="请输入日志类型"/>
         </el-form-item>
 
-        <el-form-item label="操作信息" prop="params">
-          <el-input v-model.trim="log.params" placeholder="请输入操作信息"/>
+        <el-form-item label="Rsp信息" prop="RspData">
+          <el-input v-model.trim="req.rspData" placeholder="请输入方法名称"/>
         </el-form-item>
 
-        <el-form-item label="用户ip" prop="reqId">
-          <el-input v-model.trim="log.reqIp" placeholder="请输入用户ip"/>
-        </el-form-item>
-
-        <el-form-item label="日志类型" prop="logType">
-          <el-input v-model.trim="log.logType" placeholder="请输入日志类型"/>
-        </el-form-item>
-
-        <el-form-item label="方法名称" prop="method">
-          <el-input v-model.trim="log.method" placeholder="请输入方法名称"/>
-        </el-form-item>
-
-        <el-form-item label="错误信息" prop="exceptionDetail">
-          <el-input v-model.trim="log.exceptionDetail"/>
+        <el-form-item label="操作次数" prop="executeTime">
+          <el-input v-model.trim="req.executeTime" placeholder="请输入方法名称"/>
         </el-form-item>
 
       </el-form>
-
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="resetForm">取 消</el-button>
-        <el-button type="primary" @click="submitForm">提 交</el-button>
-      </div>
 
     </el-dialog>
   </div>
 </template>
 
 <script>
-import * as user from '@/api/user'
+import * as req from '@/api/req'
 
 export default {
   data() {
@@ -56,39 +39,28 @@ export default {
       // 弹出框是否显示
       dialogVisible: false,
       // 表单新增编辑属性
-      log: {
+      req: {
         id: null,
-        username: '',
-        createTime: '',
-        description: '',
-        params: '',
-        logType: '',
-        method: '',
-        exceptionDetail: '',
-        executeTime: '',
-        reqIp: ''
-      },
-      // 表单检验规则
-      userRules: {
-        username: [
-          { required: true, message: '请输入终端名称', trigger: 'blur' }
-        ]
+        sn: '',
+        ip: '',
+        rspData: '',
+        reqData: '',
+        executeTime: ''
       }
     }
   },
   // 启动时就执行
   mounted: function() {
-
   },
   methods: {
     // 提交新增或更新
     submitForm() {
       this.submitLoading = true
-      this.$refs.log.validate((valid) => {
+      this.$refs.req.validate((valid) => {
         if (valid) {
-          if (this.log.id) {
+          if (this.req.id) {
             // userId不为空更新
-            user.update(this.log).then(response => {
+            req.update(this.req).then(response => {
               // 执行成功重置表单且弹出提示信息
               this.resetForm()
               this.$message({
@@ -111,7 +83,7 @@ export default {
     // 重置
     resetForm() {
       // 清空表单
-      this.$refs.log.resetFields()
+      this.$refs.req.resetFields()
       // 关闭弹窗
       this.dialogVisible = false
       // 刷新父组件列表
@@ -120,21 +92,19 @@ export default {
       this.$emit('refreshTableData')
       this.submitLoading = false
     },
-
-    // 准备新增或更新
     preById: function(id) {
       // userId不为空更新
       if (id) {
         this.submitLoading = true
-        this.log.id = id
-        user.findById(id).then(response => {
+        this.req.id = id
+        req.findById(id).then(response => {
           const data = response.data
-          this.log = data
+          this.req = data
           this.submitLoading = false
         })
       } else {
         // id为空新增
-        this.log.id = ''
+        this.req.id = ''
       }
       // 显示弹出框
       this.dialogVisible = true

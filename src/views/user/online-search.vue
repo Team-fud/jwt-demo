@@ -8,10 +8,10 @@
       :before-close="handleClose"
       width="30%">
 
-      <el-form v-loading="submitLoading" ref="log" :model="log" :rules="userRules" label-width="100px" label-suffix="：" status-icon>
-        <h3 class="title">搜索用户</h3>
-        <el-form-item label="名称" prop="username">
-          <el-input v-model.trim="log.username" placeholder="请输入搜索内容"/>
+      <el-form v-loading="submitLoading" ref="req" :model="req" :rules="userRules" label-width="100px" label-suffix="：" status-icon>
+        <h3 class="title">搜索Req</h3>
+        <el-form-item label="sn号" prop="sn">
+          <el-input v-model.trim="req.sn" placeholder="请输入搜索内容"/>
         </el-form-item>
 
       </el-form>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import * as user from '@/api/user'
+import * as req from '@/api/req'
 
 export default {
   data() {
@@ -38,14 +38,14 @@ export default {
       // Table数据
       tableData: [],
       // 表单新增编辑属性
-      log: {
+      req: {
         id: null,
-        username: ''
+        sn: ''
       },
       // 表单检验规则
       userRules: {
-        username: [
-          { required: true, message: '请输入名称', trigger: 'blur' }
+        sn: [
+          { required: true, message: '请输入sn号', trigger: 'blur' }
         ]
       }
     }
@@ -58,9 +58,9 @@ export default {
     // 提交新增或更新
     submitForm() {
       this.submitLoading = true
-      this.$refs.log.validate((valid) => {
+      this.$refs.req.validate((valid) => {
         if (valid) {
-          user.search(this.log.username).then(response => {
+          req.search(this.req.sn).then(response => {
             // 执行成功重置表单且弹出提示信息
             const data = response.data
             this.tableData = data
@@ -85,7 +85,7 @@ export default {
     // 重置
     resetForm() {
       // 清空表单
-      this.$refs.log.resetFields()
+      this.$refs.req.resetFields()
       // 关闭弹窗
       this.dialogVisible = false
       // 刷新父组件列表
@@ -94,7 +94,7 @@ export default {
       // eslint-disable-next-line eqeqeq
       if (Object.keys(this.tableData).length != 0) {
         // eslint-disable-next-line eqeqeq
-        this.$emit('getLogFromSearch', this.tableData)
+        this.$emit('getReqFromSearch', this.tableData)
       }
       this.submitLoading = false
     },

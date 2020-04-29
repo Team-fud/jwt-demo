@@ -3,23 +3,13 @@ import request from '@/utils/request'
 const baseURL = '/vue/terminal'
 
 /**
- * 终端查询
+ * 日志查询
  * @param {*} searchForm
  */
 export function list(page) {
   page = page.toString()
   return request({
-    url: baseURL + '/getAll/' + page,
-    method: 'get'
-  })
-}
-
-/**
- * 查询在线终端
- */
-export function online() {
-  return request({
-    url: baseURL + '/online',
+    url: '/vue/sys/getAllLog/' + page,
     method: 'get'
   })
 }
@@ -30,13 +20,13 @@ export function online() {
  */
 export function findById(id) {
   return request({
-    url: baseURL + '/' + id,
+    url: '/vue/sys/' + id,
     method: 'get'
   })
 }
 
 /**
- * 新增终端
+ * 新增日志*
  * @param {*} data
  */
 export function add(data) {
@@ -48,43 +38,35 @@ export function add(data) {
 }
 
 /**
- * 更新终端
+ * 更新日志
  * @param {*} data
  */
 export function update(data) {
   return request({
-    url: baseURL + '/updateName',
+    url: '/vue/sys/updateLog',
     method: 'put',
     data
   })
 }
 
 /**
- * 删除终端
+ * 删除日志
  * @param {*} id
  */
 export function delById(id) {
   return request({
-    url: baseURL + '/delete/' + id,
+    url: '/vue/sys/delete/' + id,
     method: 'delete'
   })
 }
 
 /**
- * 踢出终端
- * @param {*} id
+ * 查询日志
+ * @param content
  */
-export function onlineById(id) {
-  return request({
-    url: baseURL + '/online/' + id,
-    method: 'delete'
-  })
-}
-
 export function search(content) {
   return request({
-    url: baseURL + '/search/' + content,
+    url: '/vue/sys/search/' + content,
     method: 'get'
   })
 }
-

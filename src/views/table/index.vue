@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
 
 export default {
   filters: {
@@ -63,16 +62,16 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    // this.fetchData()
   },
   methods: {
-    fetchData() {
-      this.listLoading = true
-      getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
+    // fetchData() {
+    //   this.listLoading = true
+    //   getList(this.listQuery).then(response => {
+    //     this.list = response.data.items
+    //     this.listLoading = false
+    //   })
+    // }
   }
 }
 </script>

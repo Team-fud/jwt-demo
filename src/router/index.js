@@ -43,20 +43,20 @@ export const constantRouterMap = [
     path: '/user',
     component: Layout,
     redirect: '/user/list',
-    name: '终端管理',
-    meta: { title: '终端管理', icon: 'user' },
+    name: '后台管理',
+    meta: { title: '后台管理', icon: 'user' },
     children: [
       {
         path: 'list',
         name: 'List',
         component: () => import('@/views/user/list'),
-        meta: { title: '终端列表', icon: 'table' }
+        meta: { title: '用户监控', icon: 'table' }
       },
       {
         path: 'online',
         name: 'Online',
         component: () => import('@/views/user/online'),
-        meta: { title: '在线终端', icon: 'tree' }
+        meta: { title: '终端监控', icon: 'tree' }
       }
     ]
   },

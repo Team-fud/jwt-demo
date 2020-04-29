@@ -13,11 +13,12 @@
     <!-- 数据表格 -->
     <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
       <el-table-column type="id" align="center" min-width="40" label="id" prop="id"/>
-      <el-table-column prop="cateName" label="终端名称" align="center" min-width="100" show-overflow-tooltip />
-      <el-table-column prop="date" label="注册时间" align="center" min-width="100" show-overflow-tooltip />
+      <el-table-column prop="username" label="操作用户" align="center" min-width="100" show-overflow-tooltip />
+      <el-table-column prop="createTime" label="操作时间" align="center" min-width="100" show-overflow-tooltip />
+      <el-table-column prop="description" label="具体操作" align="center" min-width="100" show-overflow-tooltip />
       <el-table-column label="操作" align="center" fixed="right" min-width="100">
         <template slot-scope="scope">
-          <el-button size="mini" @click="preById(scope.row.id)">修改</el-button>
+          <el-button size="mini" @click="preById(scope.row.id)">查看细节</el-button>
           <el-button size="mini" type="danger" @click="delById(scope.row.id)">删除</el-button>
         </template>
       </el-table-column>
@@ -35,7 +36,7 @@
 
     <!-- 弹窗 -->
     <list-edit ref="listEdit" @refreshTableData="list(searchForm)"/>
-    <list-search ref="listSearch" @refreshTableData="search()" @getTerminalFromSearch="getTerminalFromSearch"/>
+    <list-search ref="listSearch" @refreshTableData="search()" @getLogFromSearch="getLogFromSearch"/>
   </div>
 </template>
 
@@ -115,7 +116,7 @@ export default {
       }) */
       this.$refs.listSearch.search()
     },
-    getTerminalFromSearch: function(val) {
+    getLogFromSearch: function(val) {
       console.log(val)
       this.tableData = val
     },

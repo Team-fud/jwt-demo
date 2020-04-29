@@ -45,7 +45,6 @@ service.interceptors.response.use(
         type: 'error',
         duration: 1 * 1000
       })
-      alert('2')
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
       // eslint-disable-next-line eqeqeq
       if (res.status === 'error') {
